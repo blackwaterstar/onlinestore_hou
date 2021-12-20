@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halcyon.online_store.mapper.CartMapper">
+
+    <select id="selectCartVOByUserId" parameterType="java.lang.Long" resultType="com.halcyon.online_store.entity.vo.CartVO">
+    SELECT
+      t1.cart_id,
+      t1.user_id,
+      t1.pid,
+      t2.pname,
+      t2.price,
+      t1.pcount
+    FROM
+      cart AS t1
+      JOIN product AS t2
+        ON t1.pid = t2.pid
+    WHERE t1.user_id = #{userId,jdbcType=BIGINT}
+  </select>
+
+
+</mapper>
